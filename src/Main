@@ -1,0 +1,73 @@
+import java.util.Random;
+
+public class Main {
+
+	
+	public static void main(String[] args) {
+		
+	// Δημιουργία τυχαίων πινάκων Α,Β
+		double[][] A = generateRandomMatrix(4, 4);
+		
+		double[][] Β = generateRandomMatrix(4, 4);
+		
+	//εκτύπωση αρχικών πινάκων Α,Β
+		System.out.println("Matrix A:");
+        printInfo(A);
+        
+        System.out.println("Matrix B:");
+        printInfo(Β);
+        
+     //Υπολογισμός του γινομένου των πινάκων
+        double[][] result = matrixMultiply(A, Β);
+
+     //Eκτύπωση του πίνακα αποτελέσματος
+        System.out.println("Resultant matrix:");
+        printInfo(result);
+		
+     // Υπολογισμός του γινομένου των πινάκων με τον αλγόριθμο του Strassen
+        double[][] C = strassen(A, Β);
+
+     // Εκτύπωση του πίνακα αποτελέσματος
+        System.out.println("Resultant matrix (Strassen):");
+        printInfo(C);
+
+     // Εκτύπωση του πλήθους των πράξεων
+        System.out.println("Total operations: " + Strassen.strassOperations);
+    }
+
+
+
+
+ static double[][] strassen(double[][] a, double[][] b2) {
+		return Strassen.strassen(a, b2);
+	}
+
+
+
+	private static double[][] matrixMultiply(double[][] a, double[][] b2) {
+		return Strassen.matrixMultiply(a, b2);
+	}
+
+
+
+	public static double[][] generateRandomMatrix(int rows, int cols) {
+		
+		Random rand = new Random();
+		double[][] matrix= new double[rows][cols];
+		for(int i=0; i<rows; i++) 
+			for(int j=0; j<cols; j++) 
+			matrix[i][j]= rand.nextInt(1000);
+			
+		
+		return matrix;
+	}
+	
+	public static void printInfo(double[][] matrix){
+		for (int i = 0; i < matrix.length; i++) {
+	        for (int j = 0; j < matrix[i].length; j++) {
+	            System.out.print(matrix[i][j] + "\t");
+	        }
+	        System.out.println();
+		}
+	}
+}
